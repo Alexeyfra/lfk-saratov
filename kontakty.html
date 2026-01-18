@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ru" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Связаться | ЛФК и спортивная медицина</title>
+  <meta name="description" content="Оставьте заявку или позвоните — я отвечу и предложу время.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="theme-system">
+
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <a href="index.html" class="logo">ЛФК и Спортивная медицина</a>
+       
+      </div>
+    </div>
+  </header>
+
+  <main class="page-contact">
+    <div class="container">
+      <h1 class="page-title">Связаться</h1>
+      <p class="intro">Позвоните или оставьте короткую заявку — я отвечу и предложу время.</p>
+
+      <div class="contact-methods">
+        <div class="contact-card">
+          <h3>Телефон</h3>
+          <p id="phone-display">+7-977-610-10-64</p>
+          <div class="contact-buttons">
+            <a href="tel:+79776101064" class="btn btn-primary">Позвонить</a>
+            <button id="copy-phone-btn" class="btn btn-secondary">Скопировать</button>
+          </div>
+        </div>
+
+        <div class="contact-card">
+          <h3>Короткая заявка</h3>
+          <form id="telegram-form" class="contact-form">
+            <div class="form-group">
+              <label for="name">Имя</label>
+              <input type="text" id="name" name="name" placeholder="Как к вам обращаться" required>
+            </div>
+            <div class="form-group">
+              <label for="contact">Телефон / мессенджер</label>
+              <input type="text" id="contact" name="contact" placeholder="+7… или Telegram @…" required>
+            </div>
+            <div class="form-group">
+              <label for="issue">Что беспокоит</label>
+              <textarea id="issue" name="issue" rows="3" placeholder="Коротко: где болит, как давно, после чего" required></textarea>
+            </div>
+            <div class="form-group">
+              <label for="time">Удобное время</label>
+              <input type="text" id="time" name="time" placeholder="Например: будни после 18:00" required>
+            </div>
+            <div class="form-group checkbox-group">
+              <input type="checkbox" id="consent" name="consent" required>
+              <label for="consent">Я согласен(а) на обработку персональных данных</label>
+            </div>
+            <p class="consent-note">Поставьте галочку согласия — без этого заявку нельзя отправить.</p>
+            <button type="submit" class="btn btn-primary">Отправить</button>
+          </form>
+          <p id="form-status" class="form-status" style="display: none;"></p>
+        </div>
+      </div>
+
+      <div class="after-submit">
+        <p><strong>После отправки</strong><br>Обычно отвечаю в ближайшее время. Если вопрос срочный — удобнее позвонить.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 ЛФК и спортивная медицина. Все права защищены.</p>
+    </div>
+  </footer>
+
+  <script>
+    // === НАСТРОЙКА TELEGRAM ===
+    // ЗАМЕНИТЕ ЭТИ ЗНАЧЕНИЯ НА СВОИ!
+    const TELEGRAM_BOT_TOKEN = '8484083756:AAGS_F_142StpNX1mjh4gv6uE70jT7039hQ';
+    const TELEGRAM_CHAT_ID = '441768507'; // Узнайте через @userinfobot
+    // ==========================
+
+    document.getElementById('copy-phone-btn').addEventListener('click', () => {
+      navigator.clipboard.writeText('+7-977-610-10-64').then(() => {
+        const btn = document.getElementById('copy-phone-btn');
+        const original = btn.textContent;
+        btn.textContent = 'Скопировано!';
+        setTimeout(() => btn.textContent = original, 2000);
+      });
+    });
+
+    document.getElementById('telegram-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      if (!TELEGRAM_BOT_TOKEN || TELEGRAM_BOT_TOKEN.includes('ВАШ_')) {
+        alert('❗ Сначала настройте TELEGRAM_BOT_TOKEN в файле kontakty.html');
+        return;
+      }
+      if (!TELEGRAM_CHAT_ID || TELEGRAM_CHAT_ID.includes('ВАШ_')) {
+        alert('❗ Сначала настройте TELEGRAM_CHAT_ID в файле kontakty.html');
+        return;
+      }
+
+      const form = e.target;
+      const formData = new FormData(form);
+      const message = `
+🆕 Новая заявка:
+👤 Имя: ${formData.get('name')}
+📞 Контакт: ${formData.get('contact')}
+💬 Проблема: ${formData.get('issue')}
+⏰ Удобное время: ${formData.get('time')}
+`.trim();
+
+      const statusEl = document.getElementById('form-status');
+      statusEl.style.display = 'block';
+      statusEl.textContent = 'Отправка...';
+      statusEl.className = 'form-status sending';
+
+      try {
+        const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            chat_id: TELEGRAM_CHAT_ID,
+            text: message,
+            parse_mode: 'HTML'
+          })
+        });
+
+        if (response.ok) {
+          statusEl.textContent = '✅ Заявка отправлена! Ожидайте ответа.';
+          statusEl.className = 'form-status success';
+          form.reset();
+          document.getElementById('consent').checked = false;
+        } else {
+          throw new Error('Ошибка Telegram API');
+        }
+      } catch (err) {
+        console.error(err);
+        statusEl.textContent = '❌ Не удалось отправить. Попробуйте позже или позвоните.';
+        statusEl.className = 'form-status error';
+      }
+    });
+  </script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

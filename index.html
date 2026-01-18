@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ЛФК и спортивная медицина | Саратов</title>
+  <meta name="description" content="Консультации и восстановление после боли и травм. Возврат к спорту без лишнего риска.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- Шапка -->
+  <header class="header">
+    <div class="container">
+      <h1 class="logo">ЛФК и Спортивная медицина</h1>
+    </div>
+  </header>
+
+  <!-- Герой -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h2>Консультации и восстановление после боли и травм.<br>Возврат к спорту без лишнего риска.</h2>
+        <div class="hero-buttons">
+          <a href="tel:+79776101064" class="btn btn-primary">Позвонить</a>
+          <a href="kontakty.html" class="btn btn-secondary">Написать</a>
+        </div>
+        <div class="hero-phone">
+          <span>Телефон:</span>
+          <span id="phone-number">+7-977-610-10-64</span>
+          <button id="copy-phone" class="copy-btn">Скопировать номер</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Фото -->
+  <section class="photos">
+    <div class="container">
+      <p class="section-note">Формат приёма и как я обычно работаю.</p>
+      <div class="photo-grid">
+        <div class="photo-item"><img src="assets/images/photo1.jpg" alt="Кабинет"></div>
+        <div class="photo-item"><img src="assets/images/photo2.jpg" alt="Работа с пациентом"></div>
+        <div class="photo-item"><img src="assets/images/photo3.jpg" alt="Процедура"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Кому подойдёт -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Кому подойдёт</h2>
+      <ul class="features-list">
+        <li>Если болит спина, шея, колено или плечо</li>
+        <li>Если нужно восстановиться после травмы или операции</li>
+        <li>Если хотите вернуться к спорту безопасно и быстрее</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- С чем работаю -->
+  <section class="section bg-muted">
+    <div class="container">
+      <h2 class="section-title">С чем работаю</h2>
+      <ul class="features-list">
+        <li>Боль, ограничения движения, слабость</li>
+        <li>Перегрузки и спортивные травмы</li>
+        <li>Подготовка к нагрузкам и профилактика</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Как проходит приём -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Как проходит приём</h2>
+      <ol class="process-list">
+        <li>Разбор жалоб, истории и целей</li>
+        <li>Тестирование движений и функциональная оценка</li>
+        <li>План ЛФК и рекомендации</li>
+        <li>Прохождение курса восстановления (при необходимости)</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Где принимаю -->
+<section class="section bg-muted">
+  <div class="container">
+    <h2 class="section-title">Где принимаю</h2>
+    <div class="map-card">
+      <div id="yandex-map" style="width: 100%; height: 360px; border-radius: 8px; overflow: hidden; box-shadow: 0 6px 20px rgba(0,0,0,0.08);"></div>
+      <p class="map-address">г. Саратов, ул. Большая Казачья, 18В</p>
+    </div>
+  </div>
+</section>
+
+  <!-- Подвал -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 ЛФК и спортивная медицина. Все права защищены.</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+
+<!-- Подключение API Яндекс.Карт -->
+<script src="https://api-maps.yandex.ru/2.1/?apikey=35a9458b-86f8-4ce4-b7d9-62099ce1c44f&lang=ru_RU" type="text/javascript"></script>
+<script>
+  ymaps.ready(init);
+  function init() {
+    const myMap = new ymaps.Map("yandex-map", {
+      center: [51.533792, 46.027268], // Координаты Саратова, Большая Казачья 18В
+      zoom: 16,
+      controls: ['zoomControl', 'fullscreenControl']
+    });
+
+    const myPlacemark = new ymaps.Placemark([51.533792, 46.027268], {
+      hintContent: 'Кабинет ЛФК',
+      balloonContent: 'г. Саратов, ул. Большая Казачья, 18В'
+    }, {
+      iconColor: '#c9a87a' // Золотистый цвет метки
+    });
+
+    myMap.geoObjects.add(myPlacemark);
+    myMap.behaviors.disable('scrollZoom'); // Чтобы не мешало при скролле
+  }
+</script>
+</body>
+</html>
