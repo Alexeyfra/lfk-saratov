@@ -54,10 +54,109 @@ h2{font-size:40px;text-align:center;margin-bottom:50px;}
 footer{text-align:center;padding:50px 0;color:#888;font-size:14px;}
 
 @media(max-width:900px){
-.hero{flex-direction:column;height:auto;}
-.hero img{width:100%;}
-.grid{grid-template-columns:1fr 1fr;}
-.doctor{flex-direction:column;}
+
+.container{
+padding:0 16px;
+}
+
+/* HEADER */
+.nav{
+flex-direction:column;
+gap:10px;
+text-align:center;
+}
+
+.nav a{
+display:inline-block;
+margin:5px 10px;
+}
+
+/* HERO */
+.hero{
+flex-direction:column;
+height:auto;
+gap:25px;
+text-align:center;
+}
+
+.hero h1{
+font-size:32px;
+}
+
+.hero p{
+font-size:16px;
+}
+
+.hero img{
+width:100%;
+border-radius:20px;
+}
+
+/* SECTIONS */
+.section{
+margin:70px 0;
+}
+
+h2{
+font-size:26px;
+margin-bottom:25px;
+}
+
+/* GRID — КЛЮЧЕВОЕ */
+.grid{
+grid-template-columns:1fr;
+gap:20px;
+}
+
+/* CARD */
+.card{
+padding:25px;
+border-radius:18px;
+}
+
+/* DOCTOR */
+.doctor{
+flex-direction:column;
+gap:25px;
+text-align:center;
+}
+
+.doctor img{
+width:100%;
+max-width:280px;
+margin:0 auto;
+}
+
+.doctor h3{
+font-size:22px;
+}
+
+/* TESTIMONIAL */
+.testimonial{
+font-size:14px;
+padding:20px;
+}
+
+/* CTA */
+.cta{
+padding:50px 20px;
+border-radius:24px;
+}
+
+/* BUTTON — ПОД ПАЛЕЦ */
+.btn{
+display:block;
+width:100%;
+padding:16px;
+border-radius:16px;
+text-align:center;
+}
+
+/* FIX PARALLAX (иначе дергается на мобиле) */
+.parallax{
+transform:none !important;
+}
+
 }
 
 html{
