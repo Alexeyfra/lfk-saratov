@@ -1,292 +1,677 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ЛФК Саратов — Профессиональная реабилитация</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ЛФК Саратов — Профессиональная реабилитация</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <!-- Оптимизация Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-<style>
-:root{
---primary:#0F172A;
---accent:#3FA7D6;
---green:#2FBF71;
---bg:#F7F9FB;
-}
+  <style>
+    :root{
+      --primary:#0F172A;
+      --accent:#3FA7D6;
+      --green:#2FBF71;
+      --bg:#F7F9FB;
+    }
 
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Manrope',sans-serif;}
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Manrope',sans-serif;
+    }
 
-/* УБИРАЕМ ГОРИЗОНТАЛЬНЫЙ СКРОЛЛ */
-html,body{overflow-x:hidden;}
+    body{
+      background:var(--bg);
+      color:var(--primary);
+      overflow-x:hidden;
+    }
 
-body{
-background:var(--bg);
-color:var(--primary);
-/* ФИКС HEADER */
-padding-top:110px;
-}
+    .container{
+      max-width:1200px;
+      margin:0 auto;
+      padding:0 20px;
+    }
 
-.container{
-max-width:1200px;
-margin:0 auto;
-padding:0 20px;
-}
+    header{
+      position:fixed;
+      width:100%;
+      top:0;
+      background:rgba(255,255,255,0.7);
+      backdrop-filter:blur(12px);
+      z-index:1000;
+    }
 
-header{
-position:fixed;
-width:100%;
-top:0;
-background:rgba(255,255,255,0.7);
-backdrop-filter:blur(12px);
-z-index:1000;
-}
+    .nav{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:20px 0;
+    }
 
-.nav{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:20px 0;
-flex-wrap:wrap;
-}
+    .logo{
+      font-weight:700;
+      font-size:20px;
+      letter-spacing:1px;
+    }
 
-.logo{font-weight:700;font-size:20px;}
+    .nav a{
+      margin:0 15px;
+      text-decoration:none;
+      color:var(--primary);
+      opacity:0.8;
+      transition:0.3s;
+      font-size:14px;
+    }
 
-.nav a{
-margin:0 10px;
-text-decoration:none;
-color:var(--primary);
-opacity:0.8;
-}
+    .nav a:hover{
+      opacity:1;
+    }
 
-.btn{
-background:var(--green);
-color:#fff;
-padding:14px 28px;
-border-radius:999px;
-text-decoration:none;
-font-weight:600;
-display:inline-block;
-}
+    .btn{
+      background:var(--green);
+      color:#fff;
+      padding:14px 28px;
+      border-radius:999px;
+      text-decoration:none;
+      font-weight:600;
+      transition:0.3s;
+      display:inline-block;
+      text-align:center;
+    }
 
-/* HERO */
-.hero{
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:60px;
-}
+    .btn:hover{
+      transform:translateY(-3px);
+      box-shadow:0 15px 30px rgba(47,191,113,0.4);
+    }
 
-.hero h1{
-font-size:56px;
-line-height:1.1;
-margin-bottom:20px;
-}
+    .hero{
+      height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding-top:80px;
+      gap:60px;
+      position:relative;
+    }
 
-.hero p{
-font-size:18px;
-line-height:1.6;
-margin-bottom:30px;
-}
+    .hero h1{
+      font-size:48px;
+      line-height:1.1;
+      margin-bottom:20px;
+    }
 
-.hero img{
-width:50%;
-border-radius:30px;
-}
+    .hero p{
+      font-size:18px;
+      color:#555;
+      margin-bottom:30px;
+      max-width:520px;
+    }
 
-/* SECTION */
-.section{margin:120px 0;}
+    .hero img{
+      width:50%;
+      border-radius:30px;
+      box-shadow:0 40px 80px rgba(0,0,0,0.15);
+      animation:floatImage 6s ease-in-out infinite;
+    }
 
-h2{
-font-size:40px;
-text-align:center;
-margin-bottom:50px;
-}
+    .section{
+      margin:120px 0;
+    }
 
-/* GRID */
-.grid{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:30px;
-}
+    h2{
+      font-size:36px;
+      text-align:center;
+      margin-bottom:40px;
+    }
 
-.card{
-background:#fff;
-padding:35px;
-border-radius:24px;
-box-shadow:0 20px 50px rgba(0,0,0,0.05);
+    .section-subtitle{
+      text-align:center;
+      color:#64748B;
+      max-width:620px;
+      margin:0 auto 40px;
+      font-size:16px;
+    }
 
-/* 🔥 ЧИТАЕМОСТЬ */
-line-height:1.6;
-white-space:pre-line;
-}
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:30px;
+    }
 
-/* DOCTOR */
-.doctor{
-display:flex;
-align-items:flex-start;
-gap:60px;
-}
+    .card{
+      background:#fff;
+      padding:24px 24px 26px;
+      border-radius:24px;
+      box-shadow:0 20px 50px rgba(0,0,0,0.05);
+      transition:0.3s;
+      font-size:15px;
+    }
 
-.doctor img{
-width:320px;
-border-radius:24px;
-}
+    .card:hover{
+      transform:translateY(-10px);
+      box-shadow:0 30px 60px rgba(0,0,0,0.08);
+    }
 
-.doctor p{
-line-height:1.8;
-white-space:pre-line; /* 🔥 переносы */
-font-size:15px;
-}
+    .card-title{
+      font-weight:700;
+      margin-bottom:10px;
+      font-size:16px;
+    }
 
-/* TESTIMONIAL */
-.testimonial{
-background:#fff;
-padding:30px;
-border-radius:20px;
-margin-bottom:20px;
-}
+    .card-list{
+      list-style:disc;
+      padding-left:18px;
+      color:#4B5563;
+      font-size:14px;
+      line-height:1.5;
+    }
 
-/* CTA */
-.cta{
-background:linear-gradient(135deg,var(--primary),var(--accent));
-color:#fff;
-padding:100px;
-border-radius:40px;
-text-align:center;
-}
+    .doctor{
+      display:flex;
+      align-items:flex-start;
+      gap:40px;
+    }
 
-/* MOBILE */
-@media(max-width:900px){
+    .doctor img{
+      width:320px;
+      border-radius:24px;
+      flex-shrink:0;
+    }
 
-body{padding-top:130px;}
+    .doctor h3{
+      font-size:28px;
+      margin-bottom:10px;
+    }
 
-.nav{
-flex-direction:column;
-align-items:center;
-gap:10px;
-text-align:center;
-}
+    .doctor-role{
+      font-size:16px;
+      color:#4B5563;
+      margin-bottom:20px;
+    }
 
-.hero{
-flex-direction:column;
-gap:25px;
-text-align:center;
-}
+    .doctor-block-title{
+      font-weight:700;
+      margin:18px 0 8px;
+      font-size:15px;
+    }
 
-.hero h1{font-size:30px;}
-.hero p{font-size:16px;}
+    .doctor ul{
+      margin-bottom:10px;
+      padding-left:18px;
+      list-style:disc;
+      font-size:14px;
+      color:#4B5563;
+      line-height:1.5;
+    }
 
-.hero img{width:100%;}
+    .doctor p{
+      font-size:14px;
+      color:#4B5563;
+      line-height:1.6;
+      margin-bottom:10px;
+    }
 
-.grid{grid-template-columns:1fr;}
+    .tagline{
+      font-size:14px;
+      color:#0F172A;
+      margin-top:10px;
+    }
 
-.doctor{
-flex-direction:column;
-text-align:center;
-}
+    .testimonial{
+      background:#fff;
+      padding:22px 24px;
+      border-radius:20px;
+      margin-bottom:16px;
+      box-shadow:0 15px 40px rgba(0,0,0,0.05);
+      font-size:14px;
+      color:#111827;
+    }
 
-.doctor img{
-width:100%;
-max-width:280px;
-margin:0 auto;
-}
+    .testimonial-author{
+      margin-top:6px;
+      font-size:12px;
+      color:#6B7280;
+    }
 
-.btn{
-width:100%;
-text-align:center;
-}
-}
+    .cta{
+      background:linear-gradient(135deg,var(--primary),var(--accent));
+      color:#fff;
+      padding:80px 40px;
+      border-radius:40px;
+      text-align:center;
+      box-shadow:0 30px 80px rgba(15,23,42,0.35);
+    }
 
-</style>
+    .cta h2{
+      color:#fff;
+      margin-bottom:16px;
+    }
+
+    .cta p{
+      color:#E5E7EB;
+      font-size:15px;
+    }
+
+    .cta-contacts{
+      margin-top:16px;
+      font-size:14px;
+      color:#D1D5DB;
+    }
+
+    .cta .btn{
+      margin-top:24px;
+      min-width:220px;
+    }
+
+    footer{
+      text-align:center;
+      padding:50px 0;
+      color:#888;
+      font-size:14px;
+    }
+
+    .contacts p{
+      margin-bottom:6px;
+      font-size:15px;
+      text-align:center;
+    }
+
+    .contacts a{
+      color:var(--accent);
+      text-decoration:none;
+    }
+
+    .contacts a:hover{
+      text-decoration:underline;
+    }
+
+    .glow{
+      position:absolute;
+      width:500px;
+      height:500px;
+      background:radial-gradient(circle, rgba(63,167,214,0.15), transparent 70%);
+      filter:blur(40px);
+      z-index:-1;
+      pointer-events:none;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    .reveal{
+      opacity:0;
+      transform:translateY(60px) scale(0.98);
+      transition:opacity 0.9s ease, transform 0.9s cubic-bezier(0.16,1,0.3,1);
+      will-change:transform,opacity;
+    }
+
+    .reveal.active{
+      opacity:1;
+      transform:translateY(0) scale(1);
+    }
+
+    .parallax{
+      transform:translateY(0px);
+      transition:transform 0.1s linear;
+      will-change:transform;
+    }
+
+    .hero h1,
+    .hero p,
+    .hero .btn{
+      opacity:0;
+      transform:translateY(40px);
+      animation:heroFade 1s forwards;
+    }
+
+    .hero p{
+      animation-delay:0.2s;
+    }
+
+    .hero .btn{
+      animation-delay:0.4s;
+    }
+
+    @keyframes heroFade{
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    @keyframes floatImage{
+      0%{transform:translateY(0px);}
+      50%{transform:translateY(-10px);}
+      100%{transform:translateY(0px);}
+    }
+
+    /* ===== MOBILE (ОБЪЕДИНЁННЫЙ) ===== */
+    @media (max-width: 900px){
+      .container{
+        padding:0 16px;
+      }
+
+      /* HEADER */
+      .nav{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:10px;
+      }
+
+      .nav > div:last-child{
+        display:flex;
+        flex-wrap:wrap;
+        gap:10px;
+      }
+
+      .nav a{
+        margin:0;
+        font-size:13px;
+      }
+
+      .nav .btn{
+        padding:10px 16px;
+        border-radius:20px;
+        font-size:13px;
+      }
+
+      /* HERO */
+      .hero{
+        flex-direction:column;
+        height:auto;
+        gap:20px;
+        text-align:center;
+        padding-top:110px;
+      }
+
+      .hero h1{
+        font-size:28px;
+        line-height:1.2;
+      }
+
+      .hero p{
+        font-size:15px;
+        margin:0 auto 20px;
+      }
+
+      .hero img{
+        width:100%;
+        border-radius:20px;
+        margin-top:10px;
+      }
+
+      .hero .btn{
+        width:100%;
+        text-align:center;
+      }
+
+      /* SECTIONS */
+      .section{
+        margin:70px 0;
+      }
+
+      h2{
+        font-size:24px;
+        margin-bottom:20px;
+      }
+
+      .section-subtitle{
+        font-size:14px;
+        margin-bottom:24px;
+      }
+
+      .grid{
+        grid-template-columns:1fr;
+        gap:18px;
+      }
+
+      .card{
+        padding:20px;
+        border-radius:18px;
+      }
+
+      /* DOCTOR */
+      .doctor{
+        flex-direction:column;
+        gap:20px;
+        text-align:left;
+      }
+
+      .doctor img{
+        width:100%;
+        max-width:260px;
+        margin:0 auto;
+      }
+
+      .doctor h3{
+        font-size:22px;
+        text-align:left;
+      }
+
+      /* TESTIMONIAL */
+      .testimonial{
+        font-size:13px;
+        padding:18px 18px;
+      }
+
+      /* CTA */
+      .cta{
+        padding:50px 20px;
+        border-radius:24px;
+      }
+
+      .cta .btn{
+        width:100%;
+      }
+
+      /* BUTTON TAP AREA */
+      .btn{
+        display:block;
+        width:100%;
+        border-radius:18px;
+      }
+
+      /* PARALLAX OFF НА МОБИЛЕ */
+      .parallax{
+        transform:none !important;
+      }
+
+      .glow{
+        display:none;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<header>
-<div class="container nav">
-<div class="logo">ЛФК Саратов</div>
-<div>
-<a href="#services">Услуги</a>
-<a href="#doctor">Специалист</a>
-<a href="#reviews">Отзывы</a>
-<a href="#contacts">Контакты</a>
-<a href="#contacts" class="btn">Записаться</a>
-</div>
-</div>
-</header>
+  <div class="glow" style="top:-120px;left:-120px;"></div>
+  <div class="glow" style="bottom:-160px;right:-80px;"></div>
 
-<section class="hero container">
-<div>
-<h1>Лечебная физкультура и реабилитация в Саратове</h1>
-<p>Профессиональный подход к восстановлению функций опорно двигательной системы человека после травм и операций</p>
-<a href="#contacts" class="btn">Получить консультацию</a>
-</div>
-<img src="assets/images/3.jpg">
-</section>
+  <header>
+    <div class="container nav">
+      <div class="logo">ЛФК Саратов</div>
+      <div>
+        <a href="#services">Услуги</a>
+        <a href="#doctor">Специалист</a>
+        <a href="#reviews">Результаты</a>
+        <a href="#contacts">Контакты</a>
+        <a href="#contacts" class="btn">Записаться</a>
+      </div>
+    </div>
+  </header>
 
-<section id="services" class="section container">
-<h2>МЕТОДЫ ВОССТАНОВЛЕНИЯ</h2>
-<div class="grid">
+  <section class="hero container parallax">
+    <div>
+      <h1>Лечебная физкультура и реабилитация в Саратове</h1>
+      <p>Индивидуальные программы ЛФК и физической реабилитации для восстановления функций опорно-двигательного аппарата после травм, операций и хронических заболеваний.</p>
+      <a href="#contacts" class="btn">Получить консультацию</a>
+    </div>
+    <img src="assets/images/3.jpg"
+         alt="Специалист по ЛФК проводит реабилитационное занятие в зале с тренажёрами"
+         loading="eager">
+  </section>
 
-<div class="card">✅ 1. Кинезитерапия на декомпрессионных тренажерах. 
-Индивидуальный комплекс упражнений, который предназначен для восстановления функций опорно-двигательного аппарата человека, а также способствует устранению болевого синдрома и воспалительного процесса.
-Повышает подвижность суставов, позвоночника, мышцы становятся сильными и эластичными.</div>
+  <section id="services" class="section container">
+    <h2>Методы восстановления</h2>
+    <p class="section-subtitle">Подбираем безопасные и эффективные методики с учётом диагноза, возраста и уровня подготовки, чтобы снизить боль, улучшить подвижность и вернуть вас к привычной активности.</p>
 
-<div class="card">✅ 2. Точечная пальпаторная проработка.
-Высокотехничный вид массажа, направленный на устранение спазма путем ишемического сдавливания.
-Способен остановить дегенеративные изменения позвоночника, устранить боль, усталость, снять напряжение.</div>
+    <div class="grid">
+      <div class="card reveal">
+        <div class="card-title">Кинезитерапия на декомпрессионных тренажёрах</div>
+        <ul class="card-list">
+          <li>Восстановление функций опорно-двигательного аппарата.</li>
+          <li>Снижение болевого синдрома и воспаления за счёт дозированной нагрузки.</li>
+          <li>Улучшение подвижности позвоночника и суставов, укрепление мышц.</li>
+        </ul>
+      </div>
 
-<div class="card">✅ 3. Постизометрическая релаксация.
-Мягкая мануальная техника, направленная на снятие мышечного гипертонуса и болевого синдрома.
-Восстанавливает физиологическую длину мышц.</div>
+      <div class="card reveal">
+        <div class="card-title">Точечная пальпаторная проработка</div>
+        <ul class="card-list">
+          <li>Мягкое устранение мышечных спазмов и триггерных точек.</li>
+          <li>Снижение чувства усталости, напряжения и скованности позвоночника и суставов.</li>
+          <li>Поддержка осанки и общего тонуса нервной системы.</li>
+        </ul>
+      </div>
 
-<div class="card">✅ 4. Суставная гимнастика.
-Комплекс упражнений для восстановления подвижности суставов, гибкости позвоночника и эластичности мышц.</div>
+      <div class="card reveal">
+        <div class="card-title">Постизометрическая релаксация (ПИР)</div>
+        <ul class="card-list">
+          <li>Снятие мышечного гипертонуса и уменьшение болевого синдрома.</li>
+          <li>Мягкая мануальная мобилизация без резких рывков.</li>
+          <li>Восстановление физиологической длины мышц и объёма движений.</li>
+        </ul>
+      </div>
 
-</div>
-</section>
+      <div class="card reveal">
+        <div class="card-title">Суставная и партерная гимнастика</div>
+        <ul class="card-list">
+          <li>Улучшение подвижности суставов и гибкости позвоночника.</li>
+          <li>Повышение выносливости и силы без ударных нагрузок.</li>
+          <li>Активизация периферического кровообращения и нормализация самочувствия.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-<section id="doctor" class="section container">
-<h2>Главный специалист</h2>
-<div class="doctor">
-<img src="https://raw.githubusercontent.com/Alexeyfra/lfk-saratov/b5961e823cafb2bc83e2c6cfff17985e86a27faa/assets/images/50eefa59-c0e6-4891-b317-66e4654df648.png">
-<div>
+  <section id="doctor" class="section container">
+    <h2>Главный специалист</h2>
 
-<h3>Мишагин Данила Викторович</h3>
+    <div class="doctor reveal">
+      <img src="https://raw.githubusercontent.com/Alexeyfra/lfk-saratov/b5961e823cafb2bc83e2c6cfff17985e86a27faa/assets/images/50eefa59-c0e6-4891-b317-66e4654df648.png"
+           alt="Мишагин Данила Викторович — специалист по лечебной физкультуре"
+           loading="lazy">
 
-<p>
-Специализируюсь на таких заболеваниях как :
-- Грыжи, протрузии межпозвонковых дисков;
-- Остеохондроз;
-- Остеоартроз;
-- Артроз, артрит, коксартроз, гонартроз, бурсит, тендинит, синовит;
-- Дорсалгии;
-- Спондиполистез;
-- Синдром грушевидной мышцы;
-- Остеопороз;
-- Травмы мениска, конечностей, компрессионный перелом;
-- Нарушение осанки: сколиоз, кифоз;
-- Восстановление после хирургических операций;
-- Головные боли;
-- Дыхательная гимнастика, разрабатывание легких.
+      <div>
+        <h3>Мишагин Данила Викторович</h3>
+        <p class="doctor-role">Дипломированный специалист по ЛФК, физической реабилитации и кинезиотейпированию. Практический стаж с 2015 года.</p>
 
-Индивидуальный подход, грамотное построение занятия позволяют получать положительные результаты в первые недели занятий.
+        <div class="doctor-block-title">Образование и подготовка</div>
+        <ul>
+          <li>Высшее педагогическое образование (специалитет). Институт физической культуры и спорта, г. Саратов, 2009–2014 гг.</li>
+          <li>Институт современной кинезитерапии и физической реабилитации (НОЧУ ДПО). Профилактика и лечение деформирующих заболеваний костно-мышечной системы с применением декомпрессионных тренажёров (метод Бубновского С.М.), г. Москва:
+            «Инструктор-методист» (2016 г.), «Инструктор-реабилитолог» (2018 г.).</li>
+          <li>Степень магистра по направлению «Адаптивная физическая культура», г. Саратов, 2017–2019 гг.</li>
+          <li>Профессиональная переподготовка: лечебная физкультура и спортивная медицина, Государственный медицинский университет, г. Саратов, 2022 г.</li>
+          <li>Стажировка в РЦ «Преодоление» по физической терапии, г. Москва, 2026 г.</li>
+        </ul>
 
-Положительная динамика после прохождения курса отмечена у многих пациентов.
+        <div class="doctor-block-title">С чем работаю</div>
+        <ul>
+          <li>Грыжи и протрузии межпозвонковых дисков, остеохондроз, дорсалгии.</li>
+          <li>Артрозы, артриты, коксартроз, гонартроз, бурсит, тендинит, синовит.</li>
+          <li>Сколиоз, кифоз и другие нарушения осанки.</li>
+          <li>Последствия травм мениска, конечностей, компрессионных переломов.</li>
+          <li>Состояния после оперативных вмешательств на позвоночнике и суставах.</li>
+          <li>Синдром грушевидной мышцы, спондилолистез, остеопороз.</li>
+          <li>Головные боли мышечного происхождения, дыхательная гимнастика и разработка лёгких.</li>
+        </ul>
 
-О себе :
-- честность,
-- пунктуальность,
-- профессиональная гибкость,
-- умение находить индивидуальный подход к каждому пациенту,
-- физическая форма, позволяющая работать с людьми, практически любой комплектности.
-</p>
+        <p>Индивидуальный подход и грамотно выстроенная программа позволяют большинству пациентов отмечать улучшение самочувствия уже в первые недели занятий. Дальнейшая работа направлена на укрепление результата и формирование привычки к безопасной двигательной активности.</p>
 
-<a href="#contacts" class="btn">Записаться</a>
+        <p class="tagline">О себе: честность, пунктуальность, профессиональная гибкость и умение находить подход к людям разной комплекции и уровня спастичности.</p>
 
-</div>
-</div>
-</section>
+        <br>
+        <a href="#contacts" class="btn">Записаться на приём</a>
+      </div>
+    </div>
+  </section>
 
+  <section id="reviews" class="section container">
+    <h2>Результаты пациентов</h2>
+    <p class="section-subtitle">Каждый случай индивидуален, но цель всегда одна — уменьшить боль, повысить качество жизни и помочь вернуться к привычным делам.</p>
+
+    <div class="testimonial reveal">
+      «Через несколько недель занятий смог вернуться к работе без постоянной боли в спине. Постепенно увеличиваем нагрузку, учусь правильно двигаться и укреплять мышцы.»
+      <div class="testimonial-author">Пациент, восстановление после обострения остеохондроза</div>
+    </div>
+
+    <div class="testimonial reveal">
+      «После операции на коленном суставе боялась нагружать ногу. Постепенно, под контролем специалиста, вернулась к ходьбе без трости, стала увереннее чувствовать себя в движении.»
+      <div class="testimonial-author">Пациентка, реабилитация после операции на колене</div>
+    </div>
+  </section>
+
+  <section class="section container">
+    <div class="cta reveal">
+      <h2>Начните восстановление уже сегодня</h2>
+      <p>На первой консультации разбираем ваш случай, оцениваем состояние, объясняем план занятий и прогноз по этапам реабилитации.</p>
+      <p class="cta-contacts">Можно записаться по телефону или через мессенджер — выберите удобный способ связи.</p>
+      <a href="#contacts" class="btn">Записаться на консультацию</a>
+    </div>
+  </section>
+
+  <section id="contacts" class="section container contacts">
+    <h2>Контакты</h2>
+    <p>Телефон: <a href="tel:+79776101064">+7&nbsp;977&nbsp;610‑10‑64</a></p>
+    <p>Адрес: г. Саратов, ул. Большая Казачья, 18В</p>
+  </section>
+
+  <footer>
+    © 2026 LFK Clinic. Все права защищены
+  </footer>
+
+  <script>
+    // Reveal-анимация при прокрутке
+    const revealElements = document.querySelectorAll('.card, .testimonial, .doctor, .cta');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    revealElements.forEach(el => {
+      el.classList.add('reveal');
+      observer.observe(el);
+    });
+
+    // Параллакс-эффект для hero на десктопе
+    const parallaxSection = document.querySelector('.parallax');
+    let ticking = false;
+
+    function updateParallax() {
+      const scrolled = window.pageYOffset || document.documentElement.scrollTop;
+      if (parallaxSection && window.innerWidth > 900) {
+        parallaxSection.style.transform = `translateY(${scrolled * 0.08}px)`;
+      }
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateParallax);
+        ticking = true;
+      }
+    });
+  </script>
 </body>
 </html>
