@@ -55,221 +55,52 @@ footer{text-align:center;padding:50px 0;color:#888;font-size:14px;}
 
 @media(max-width:900px){
 
-.container{
-padding:0 16px;
-}
+.container{padding:0 16px;}
 
 /* HEADER */
-.nav{
-flex-direction:column;
-gap:10px;
-text-align:center;
-}
-
-.nav a{
-display:inline-block;
-margin:5px 10px;
-}
+.nav{flex-direction:column;gap:10px;text-align:center;}
+.nav a{display:inline-block;margin:5px 10px;}
 
 /* HERO */
-.hero{
-flex-direction:column;
-height:auto;
-gap:25px;
-text-align:center;
-}
-
-.hero h1{
-font-size:32px;
-}
-
-.hero p{
-font-size:16px;
-}
-
-.hero img{
-width:100%;
-border-radius:20px;
-}
+.hero{flex-direction:column;height:auto;gap:25px;text-align:center;}
+.hero h1{font-size:32px;}
+.hero p{font-size:16px;}
+.hero img{width:100%;border-radius:20px;}
 
 /* SECTIONS */
-.section{
-margin:70px 0;
-}
+.section{margin:70px 0;}
+h2{font-size:26px;margin-bottom:25px;}
 
-h2{
-font-size:26px;
-margin-bottom:25px;
-}
-
-/* GRID — КЛЮЧЕВОЕ */
-.grid{
-grid-template-columns:1fr;
-gap:20px;
-}
+/* GRID */
+.grid{grid-template-columns:1fr;gap:20px;}
 
 /* CARD */
-.card{
-padding:25px;
-border-radius:18px;
-}
+.card{padding:25px;border-radius:18px;}
 
 /* DOCTOR */
-.doctor{
-flex-direction:column;
-gap:25px;
-text-align:center;
-}
-
-.doctor img{
-width:100%;
-max-width:280px;
-margin:0 auto;
-}
-
-.doctor h3{
-font-size:22px;
-}
+.doctor{flex-direction:column;gap:25px;text-align:center;}
+.doctor img{width:100%;max-width:280px;margin:0 auto;}
+.doctor h3{font-size:22px;}
 
 /* TESTIMONIAL */
-.testimonial{
-font-size:14px;
-padding:20px;
-}
+.testimonial{font-size:14px;padding:20px;}
 
 /* CTA */
-.cta{
-padding:50px 20px;
-border-radius:24px;
+.cta{padding:50px 20px;border-radius:24px;}
+
+/* BUTTON */
+.btn{display:block;width:100%;padding:16px;border-radius:16px;text-align:center;}
+
+/* PARALLAX OFF */
+.parallax{transform:none !important;}
 }
 
-/* BUTTON — ПОД ПАЛЕЦ */
-.btn{
-display:block;
-width:100%;
-padding:16px;
-border-radius:16px;
-text-align:center;
-}
-
-/* FIX PARALLAX (иначе дергается на мобиле) */
-.parallax{
-transform:none !important;
-}
-
-}
-
-@media(max-width:900px){
-
-/* ===== HEADER FIX ===== */
-.nav{
-flex-direction:column;
-align-items:flex-start;
-gap:10px;
-}
-
-.nav > div:last-child{
-display:flex;
-flex-wrap:wrap;
-gap:10px;
-}
-
-.nav a{
-margin:0;
-font-size:14px;
-}
-
-.nav .btn{
-padding:10px 18px;
-border-radius:20px;
-font-size:14px;
-}
-
-/* ===== HERO FIX ===== */
-.hero{
-padding-top:120px;
-gap:20px;
-}
-
-.hero h1{
-font-size:30px;
-line-height:1.2;
-}
-
-.hero p{
-font-size:15px;
-}
-
-.hero .btn{
-width:100%;
-text-align:center;
-}
-
-/* ===== IMAGE FIX ===== */
-.hero img{
-margin-top:10px;
-}
-
-/* ===== SECTION SPACING ===== */
-.section{
-margin:80px 0;
-}
-
-/* ===== GRID FIX ===== */
-.grid{
-grid-template-columns:1fr;
-}
-
-/* ===== DOCTOR FIX ===== */
-.doctor{
-flex-direction:column;
-text-align:center;
-}
-
-.doctor img{
-width:100%;
-max-width:260px;
-margin:0 auto;
-}
-
-/* ===== CTA FIX ===== */
-.cta{
-padding:50px 20px;
-border-radius:25px;
-}
-
-.cta .btn{
-width:100%;
-}
-
-/* ===== BUTTON TAP AREA ===== */
-.btn{
-display:block;
-width:100%;
-text-align:center;
-}
-
-/* ===== FIX OVERFLOW ===== */
-body{
-overflow-x:hidden;
-}
-
-/* ===== PARALLAX OFF (ВАЖНО) ===== */
-.parallax{
-transform:none !important;
-}
-
-}
-  
-html{
-scroll-behavior:smooth;
-}
+html{scroll-behavior:smooth;}
 
 .reveal{
 opacity:0;
 transform:translateY(60px) scale(0.98);
 transition:opacity 1s ease, transform 1s cubic-bezier(0.16,1,0.3,1);
-will-change:transform,opacity;
 }
 
 .reveal.active{
@@ -280,7 +111,6 @@ transform:translateY(0) scale(1);
 .parallax{
 transform:translateY(0px);
 transition:transform 0.1s linear;
-will-change:transform;
 }
 
 .hero h1,
@@ -333,9 +163,93 @@ filter:blur(40px);
 z-index:-1;
 }
 
+/* ========================= */
+/* 🔥 ТОЛЬКО ЧИТАЕМОСТЬ */
+/* ========================= */
+
+p{
+line-height:1.75;
+margin-bottom:16px;
+color:#4B5563;
+}
+
+.card{
+line-height:1.75;
+white-space:pre-line;
+color:#374151;
+}
+
+ul{
+margin-top:20px;
+margin-bottom:20px;
+padding-left:22px;
+}
+
+li{
+margin-bottom:12px;
+line-height:1.7;
+color:#4B5563;
+}
+
+.doctor{
+max-width:900px;
+margin:0 auto;
+}
+
+.doctor p{
+line-height:1.75;
+margin-bottom:18px;
+}
+
+.doctor ul{
+margin-top:20px;
+margin-bottom:25px;
+}
+
+.doctor li{
+margin-bottom:14px;
+}
+
+.doctor ul p{
+margin-top:20px;
+line-height:1.75;
+}
+
+.card,
+.testimonial{
+max-width:700px;
+margin-left:auto;
+margin-right:auto;
+}
+
+.grid .card{
+max-width:100%;
+}
+
+.testimonial{
+line-height:1.7;
+}
+
+.cta p{
+color:rgba(255,255,255,0.85);
+line-height:1.7;
+}
+
+#contacts p{
+margin-bottom:10px;
+line-height:1.6;
+}
+
+@media(max-width:900px){
+p, li{font-size:15px;}
+.card{font-size:15px;}
+}
+
 </style>
 </head>
+
 <body>
+
 <div class="glow" style="top:-100px;left:-100px"></div>
 <div class="glow" style="bottom:0;right:0"></div>
 
@@ -368,16 +282,19 @@ z-index:-1;
   
 Индивидуальный комплекс упражнений, который предназначен для восстановления функций Опорно-Двигательного аппарата человека, а так же способствует устранению болевого синдрома и воспалительного процесса.
 Повышает подвижность суставов, позвоночника, мышцы становятся сильными и эластичными. </div>
+
 <div class="card">
 ✅ 2. Точечная пальпаторная проработка.
   
 Высокотехничный вид массажа, который направлен на устранение спазма, путем ишемического сдавливания.
 Способен остановить дегенеративные изменения  позвоночника по всем отделам, а также  устранить боль, усталость, снять излишнее напряжение, и тугоподвижность позвоночника и суставов. 
 Поможет улучшить осанку, тонизировать работу нервной системы, повысить работоспособность и ясность ума.</div>
+
 <div class="card">✅ 3. Постизометрическая релаксация. 
 
 Мягкая мануальная мобилизационная  техника, направления на снятие мышечного гипертонуса и болевого синдрома.
 Устранение суставной блокады, восстановление физиологической длины мышц. </div>
+
 <div class="card">✅ 4. суставная партерная гимнастика 
 
 Система специальных упражнений, направленных на восстановление подвижности суставов, гибкости позвоночника и эластичности мышц и связок. Комплекс поможет запустить переферическое кровообращение, решить проблемы с А/Д, стать сильным и  выносливым.</div>
@@ -392,6 +309,7 @@ z-index:-1;
 <h3>Мишагин Данила Викторович</h3>
 <p>Дипломированный специалист по ЛФК, специалист по физической реабилитации, кинезиотейпированию.
 Практический стаж с 2015г.</p>
+
 <ul>
 <li>Высшее педагогическое образование, Специалитет.
 Институт Физической культуры и Спорта. г.Саратов.  2009-2014гг.</li>
@@ -434,6 +352,7 @@ z-index:-1;
 - умение находить индивидуальный подход к каждому пациенту, 
 - физическая форма, позволяющая работать с людьми, практически любой комплектности и уровнем спастичности.</p>
 </ul>
+
 <br>
 <a href="#contacts" class="btn">Записаться</a>
 </div>
