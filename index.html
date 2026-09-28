@@ -2,666 +2,1384 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f5f8f8">
+  <meta name="description" content="Лечебная физкультура и физическая реабилитация в Саратове. Индивидуальные программы восстановления после травм, операций и хронических заболеваний.">
   <title>ЛФК Саратов — Профессиональная реабилитация</title>
-
-  <!-- Оптимизация Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
   <style>
-    :root{
-      --primary:#0F172A;
-      --accent:#3FA7D6;
-      --green:#2FBF71;
-      --bg:#F7F9FB;
+    :root {
+      --ink: #10212a;
+      --ink-soft: #52656f;
+      --navy: #17323f;
+      --blue: #4f9fbd;
+      --blue-soft: #d9eef4;
+      --green: #3b9c7a;
+      --green-dark: #2f7f65;
+      --paper: #ffffff;
+      --surface: #f5f8f8;
+      --line: rgba(16, 33, 42, 0.1);
+      --shadow: 0 28px 80px rgba(25, 53, 66, 0.12);
+      --header-height: 82px;
+      --radius: 30px;
+      --container: 1200px;
     }
 
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      font-family:'Manrope',sans-serif;
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
     }
 
-    body{
-      background:var(--bg);
-      color:var(--primary);
-      overflow-x:hidden;
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: calc(var(--header-height) + 24px);
+      overflow-x: clip;
     }
 
-    .container{
-      max-width:1200px;
-      margin:0 auto;
-      padding:0 20px;
+    body {
+      margin: 0;
+      min-width: 320px;
+      overflow-x: clip;
+      background:
+        radial-gradient(circle at 92% 6%, rgba(79, 159, 189, 0.12), transparent 28rem),
+        linear-gradient(180deg, #fbfdfd 0%, var(--surface) 48%, #edf4f3 100%);
+      color: var(--ink);
+      font-family: "Manrope", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
     }
 
-    header{
-      position:fixed;
-      width:100%;
-      top:0;
-      background:rgba(255,255,255,0.7);
-      backdrop-filter:blur(12px);
-      z-index:1000;
+    body.menu-open {
+      overflow: hidden;
     }
 
-    .nav{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:20px 0;
+    img,
+    svg {
+      display: block;
+      max-width: 100%;
     }
 
-    .logo{
-      font-weight:700;
-      font-size:20px;
-      letter-spacing:1px;
+    a,
+    button {
+      -webkit-tap-highlight-color: transparent;
     }
 
-    .nav a{
-      margin:0 15px;
-      text-decoration:none;
-      color:var(--primary);
-      opacity:0.8;
-      transition:0.3s;
-      font-size:14px;
+    a {
+      color: inherit;
     }
 
-    .nav a:hover{
-      opacity:1;
+    button {
+      font: inherit;
     }
 
-    .btn{
-      background:var(--green);
-      color:#fff;
-      padding:14px 28px;
-      border-radius:999px;
-      text-decoration:none;
-      font-weight:600;
-      transition:0.3s;
-      display:inline-block;
-      text-align:center;
+    :focus-visible {
+      outline: 3px solid rgba(79, 159, 189, 0.48);
+      outline-offset: 4px;
     }
 
-    .btn:hover{
-      transform:translateY(-3px);
-      box-shadow:0 15px 30px rgba(47,191,113,0.4);
+    .container {
+      width: min(var(--container), calc(100% - 48px));
+      margin-inline: auto;
     }
 
-    .hero{
-      height:100vh;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding-top:80px;
-      gap:60px;
-      position:relative;
+    .site-header {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 1000;
+      height: var(--header-height);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+      background: rgba(250, 252, 252, 0.82);
+      box-shadow: 0 10px 34px rgba(16, 33, 42, 0.06);
+      backdrop-filter: blur(18px) saturate(140%);
+      -webkit-backdrop-filter: blur(18px) saturate(140%);
     }
 
-    .hero h1{
-      font-size:48px;
-      line-height:1.1;
-      margin-bottom:20px;
+    .nav {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
     }
 
-    .hero p{
-      font-size:18px;
-      color:#555;
-      margin-bottom:30px;
-      max-width:520px;
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      flex: 0 0 auto;
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
     }
 
-    .hero img{
-      width:50%;
-      border-radius:30px;
-      box-shadow:0 40px 80px rgba(0,0,0,0.15);
-      animation:floatImage 6s ease-in-out infinite;
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 13px;
+      background: linear-gradient(145deg, var(--blue), var(--green));
+      color: #fff;
+      box-shadow: 0 10px 22px rgba(59, 156, 122, 0.24);
+      font-size: 13px;
+      letter-spacing: 0.04em;
     }
 
-    .section{
-      margin:120px 0;
+    .nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 4px;
     }
 
-    h2{
-      font-size:36px;
-      text-align:center;
-      margin-bottom:40px;
+    .nav-links > a:not(.button) {
+      padding: 11px 12px;
+      color: var(--ink-soft);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      transition: color 180ms ease, background 180ms ease;
+      border-radius: 999px;
     }
 
-    .section-subtitle{
-      text-align:center;
-      color:#64748B;
-      max-width:620px;
-      margin:0 auto 40px;
-      font-size:16px;
+    .nav-links > a:not(.button):hover {
+      color: var(--ink);
+      background: rgba(79, 159, 189, 0.08);
     }
 
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:30px;
+    .button {
+      min-height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border: 0;
+      border-radius: 999px;
+      background: var(--green);
+      color: #fff;
+      box-shadow: 0 13px 28px rgba(59, 156, 122, 0.24);
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+      transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
     }
 
-    .card{
-      background:#fff;
-      padding:24px 24px 26px;
-      border-radius:24px;
-      box-shadow:0 20px 50px rgba(0,0,0,0.05);
-      transition:0.3s;
-      font-size:15px;
+    .button:hover {
+      transform: translateY(-2px);
+      background: var(--green-dark);
+      box-shadow: 0 18px 34px rgba(59, 156, 122, 0.3);
     }
 
-    .card:hover{
-      transform:translateY(-10px);
-      box-shadow:0 30px 60px rgba(0,0,0,0.08);
+    .button--light {
+      background: #fff;
+      color: var(--navy);
+      box-shadow: 0 14px 34px rgba(4, 20, 28, 0.2);
     }
 
-    .card-title{
-      font-weight:700;
-      margin-bottom:10px;
-      font-size:16px;
+    .button--light:hover {
+      background: #eff8f5;
     }
 
-    .card-list{
-      list-style:disc;
-      padding-left:18px;
-      color:#4B5563;
-      font-size:14px;
-      line-height:1.5;
+    .menu-toggle {
+      display: none;
+      width: 46px;
+      height: 46px;
+      padding: 0;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      background: rgba(255, 255, 255, 0.86);
+      color: var(--ink);
+      cursor: pointer;
     }
 
-    .doctor{
-      display:flex;
-      align-items:flex-start;
-      gap:40px;
+    .menu-toggle span,
+    .menu-toggle::before,
+    .menu-toggle::after {
+      content: "";
+      width: 20px;
+      height: 2px;
+      display: block;
+      margin: 4px auto;
+      border-radius: 999px;
+      background: currentColor;
+      transition: transform 180ms ease, opacity 180ms ease;
     }
 
-    .doctor img{
-      width:320px;
-      border-radius:24px;
-      flex-shrink:0;
+    .menu-toggle[aria-expanded="true"] span {
+      opacity: 0;
     }
 
-    .doctor h3{
-      font-size:28px;
-      margin-bottom:10px;
+    .menu-toggle[aria-expanded="true"]::before {
+      transform: translateY(6px) rotate(45deg);
     }
 
-    .doctor-role{
-      font-size:16px;
-      color:#4B5563;
-      margin-bottom:20px;
+    .menu-toggle[aria-expanded="true"]::after {
+      transform: translateY(-6px) rotate(-45deg);
     }
 
-    .doctor-block-title{
-      font-weight:700;
-      margin:18px 0 8px;
-      font-size:15px;
+    .hero {
+      min-height: 100svh;
+      display: grid;
+      grid-template-columns: minmax(0, 0.92fr) minmax(420px, 1.08fr);
+      align-items: center;
+      gap: clamp(48px, 7vw, 100px);
+      padding-top: calc(var(--header-height) + 72px);
+      padding-bottom: 84px;
+      position: relative;
+      isolation: isolate;
     }
 
-    .doctor ul{
-      margin-bottom:10px;
-      padding-left:18px;
-      list-style:disc;
-      font-size:14px;
-      color:#4B5563;
-      line-height:1.5;
+    .hero::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      width: min(48vw, 620px);
+      aspect-ratio: 1;
+      right: -20%;
+      top: 12%;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(79, 159, 189, 0.16), rgba(79, 159, 189, 0));
+      filter: blur(16px);
+      pointer-events: none;
     }
 
-    .doctor p{
-      font-size:14px;
-      color:#4B5563;
-      line-height:1.6;
-      margin-bottom:10px;
+    .eyebrow {
+      margin: 0 0 20px;
+      color: var(--green-dark);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
     }
 
-    .tagline{
-      font-size:14px;
-      color:#0F172A;
-      margin-top:10px;
+    .hero h1 {
+      max-width: 760px;
+      margin: 0;
+      font-size: clamp(44px, 5.25vw, 76px);
+      line-height: 1.04;
+      letter-spacing: -0.055em;
+      text-wrap: balance;
     }
 
-    .testimonial{
-      background:#fff;
-      padding:22px 24px;
-      border-radius:20px;
-      margin-bottom:16px;
-      box-shadow:0 15px 40px rgba(0,0,0,0.05);
-      font-size:14px;
-      color:#111827;
+    .hero-copy > p:not(.eyebrow) {
+      max-width: 610px;
+      margin: 28px 0 34px;
+      color: var(--ink-soft);
+      font-size: clamp(16px, 1.4vw, 19px);
+      line-height: 1.75;
     }
 
-    .testimonial-author{
-      margin-top:6px;
-      font-size:12px;
-      color:#6B7280;
+    .hero-copy .button {
+      min-width: 220px;
     }
 
-    .cta{
-      background:linear-gradient(135deg,var(--primary),var(--accent));
-      color:#fff;
-      padding:80px 40px;
-      border-radius:40px;
-      text-align:center;
-      box-shadow:0 30px 80px rgba(15,23,42,0.35);
+    .hero-visual {
+      min-width: 0;
+      position: relative;
     }
 
-    .cta h2{
-      color:#fff;
-      margin-bottom:16px;
+    .hero-image-frame {
+      overflow: hidden;
+      border: 8px solid rgba(255, 255, 255, 0.8);
+      border-radius: 42px;
+      background: #dce8ea;
+      box-shadow: var(--shadow);
+      animation: floatImage 7s ease-in-out infinite;
     }
 
-    .cta p{
-      color:#E5E7EB;
-      font-size:15px;
+    .hero-image-frame img {
+      width: 100%;
+      height: min(66vh, 680px);
+      min-height: 520px;
+      object-fit: cover;
+      object-position: center;
     }
 
-    .cta-contacts{
-      margin-top:16px;
-      font-size:14px;
-      color:#D1D5DB;
+    .hero-note {
+      position: absolute;
+      left: -42px;
+      bottom: 38px;
+      max-width: 245px;
+      padding: 18px 20px;
+      border: 1px solid rgba(255, 255, 255, 0.78);
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 18px 50px rgba(16, 33, 42, 0.16);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.5;
     }
 
-    .cta .btn{
-      margin-top:24px;
-      min-width:220px;
+    .hero-note::before {
+      content: "";
+      width: 9px;
+      height: 9px;
+      display: inline-block;
+      margin-right: 9px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 6px rgba(59, 156, 122, 0.12);
     }
 
-    footer{
-      text-align:center;
-      padding:50px 0;
-      color:#888;
-      font-size:14px;
+    .content-section {
+      padding-block: 118px;
     }
 
-    .contacts p{
-      margin-bottom:6px;
-      font-size:15px;
-      text-align:center;
+    .section-heading {
+      max-width: 760px;
+      margin: 0 auto 54px;
+      text-align: center;
     }
 
-    .contacts a{
-      color:var(--accent);
-      text-decoration:none;
+    .section-heading h2 {
+      margin: 0;
+      font-size: clamp(34px, 4vw, 52px);
+      line-height: 1.12;
+      letter-spacing: -0.045em;
+      text-wrap: balance;
     }
 
-    .contacts a:hover{
-      text-decoration:underline;
+    .section-heading p {
+      margin: 20px auto 0;
+      color: var(--ink-soft);
+      font-size: 16px;
+      line-height: 1.75;
     }
 
-    .glow{
-      position:absolute;
-      width:500px;
-      height:500px;
-      background:radial-gradient(circle, rgba(63,167,214,0.15), transparent 70%);
-      filter:blur(40px);
-      z-index:-1;
-      pointer-events:none;
+    .methods-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
     }
 
-    html{
-      scroll-behavior:smooth;
+    .method-card {
+      min-width: 0;
+      min-height: 100%;
+      padding: 34px;
+      border: 1px solid rgba(255, 255, 255, 0.76);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.82);
+      box-shadow: 0 20px 58px rgba(25, 53, 66, 0.075);
+      transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
     }
 
-    .reveal{
-      opacity:0;
-      transform:translateY(60px) scale(0.98);
-      transition:opacity 0.9s ease, transform 0.9s cubic-bezier(0.16,1,0.3,1);
-      will-change:transform,opacity;
+    .method-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(79, 159, 189, 0.24);
+      box-shadow: 0 28px 68px rgba(25, 53, 66, 0.12);
     }
 
-    .reveal.active{
-      opacity:1;
-      transform:translateY(0) scale(1);
+    .method-number {
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 22px;
+      border-radius: 14px;
+      background: var(--blue-soft);
+      color: #2e7893;
+      font-size: 12px;
+      font-weight: 800;
     }
 
-    .parallax{
-      transform:translateY(0px);
-      transition:transform 0.1s linear;
-      will-change:transform;
+    .method-card h3 {
+      margin: 0 0 16px;
+      font-size: 20px;
+      line-height: 1.35;
+      letter-spacing: -0.02em;
     }
 
-    .hero h1,
-    .hero p,
-    .hero .btn{
-      opacity:0;
-      transform:translateY(40px);
-      animation:heroFade 1s forwards;
+    .clean-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      color: var(--ink-soft);
+      font-size: 14px;
+      line-height: 1.7;
     }
 
-    .hero p{
-      animation-delay:0.2s;
+    .clean-list li {
+      position: relative;
+      padding-left: 24px;
     }
 
-    .hero .btn{
-      animation-delay:0.4s;
+    .clean-list li + li {
+      margin-top: 9px;
     }
 
-    @keyframes heroFade{
-      to{
-        opacity:1;
-        transform:translateY(0);
+    .clean-list li::before {
+      content: "";
+      position: absolute;
+      left: 1px;
+      top: 0.72em;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 5px rgba(59, 156, 122, 0.1);
+    }
+
+    .specialist-wrap {
+      margin-top: 128px;
+      scroll-margin-top: calc(var(--header-height) + 24px);
+    }
+
+    .specialist-shell {
+      display: grid;
+      grid-template-columns: minmax(300px, 0.78fr) minmax(0, 1.22fr);
+      gap: clamp(38px, 6vw, 78px);
+      align-items: start;
+      padding: clamp(30px, 5vw, 64px);
+      border: 1px solid rgba(255, 255, 255, 0.78);
+      border-radius: 42px;
+      background: rgba(255, 255, 255, 0.76);
+      box-shadow: var(--shadow);
+    }
+
+    .specialist-media {
+      position: sticky;
+      top: calc(var(--header-height) + 28px);
+      min-width: 0;
+    }
+
+    .specialist-media img {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      border-radius: 28px;
+      object-fit: cover;
+      object-position: center;
+      box-shadow: 0 24px 55px rgba(16, 33, 42, 0.16);
+    }
+
+    .specialist-summary {
+      margin-top: 22px;
+      padding: 22px;
+      border: 1px solid rgba(79, 159, 189, 0.16);
+      border-radius: 22px;
+      background: linear-gradient(145deg, rgba(217, 238, 244, 0.68), rgba(255, 255, 255, 0.76));
+    }
+
+    .specialist-summary strong {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 16px;
+    }
+
+    .specialist-summary p {
+      margin: 0;
+      color: var(--ink-soft);
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+    .specialist-content {
+      min-width: 0;
+    }
+
+    .specialist-content > .eyebrow {
+      margin-bottom: 12px;
+    }
+
+    .specialist-content h2 {
+      margin: 0;
+      font-size: clamp(34px, 4vw, 50px);
+      line-height: 1.12;
+      letter-spacing: -0.045em;
+    }
+
+    .doctor-role {
+      margin: 18px 0 30px;
+      color: var(--ink-soft);
+      font-size: 16px;
+      line-height: 1.75;
+    }
+
+    .info-block {
+      padding-block: 28px;
+      border-top: 1px solid var(--line);
+    }
+
+    .info-block h3 {
+      margin: 0 0 18px;
+      font-size: 19px;
+      letter-spacing: -0.02em;
+    }
+
+    .info-list {
+      display: grid;
+      gap: 13px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      counter-reset: info;
+    }
+
+    .info-list li {
+      min-width: 0;
+      position: relative;
+      padding: 16px 18px 16px 52px;
+      border-radius: 18px;
+      background: rgba(241, 247, 247, 0.92);
+      color: #41555f;
+      font-size: 14px;
+      line-height: 1.72;
+      overflow-wrap: anywhere;
+      counter-increment: info;
+    }
+
+    .info-list li::before {
+      content: counter(info, decimal-leading-zero);
+      position: absolute;
+      left: 17px;
+      top: 17px;
+      color: var(--green-dark);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+    }
+
+    .conditions-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .conditions-list li {
+      min-width: 0;
+      padding: 16px 16px 16px 42px;
+      position: relative;
+      border: 1px solid rgba(16, 33, 42, 0.08);
+      border-radius: 17px;
+      background: #fff;
+      color: #41555f;
+      font-size: 13px;
+      line-height: 1.62;
+      overflow-wrap: anywhere;
+    }
+
+    .conditions-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 15px;
+      top: 15px;
+      color: var(--green);
+      font-weight: 800;
+    }
+
+    .specialist-note {
+      margin: 4px 0 18px;
+      color: var(--ink-soft);
+      font-size: 14px;
+      line-height: 1.75;
+    }
+
+    .tagline {
+      margin: 0 0 28px;
+      padding: 20px 22px;
+      border-left: 3px solid var(--blue);
+      border-radius: 0 18px 18px 0;
+      background: rgba(217, 238, 244, 0.48);
+      color: var(--navy);
+      font-size: 14px;
+      line-height: 1.72;
+    }
+
+    .outcomes-section {
+      padding-top: 110px;
+      padding-bottom: 72px;
+      scroll-margin-top: calc(var(--header-height) + 24px);
+    }
+
+    .testimonials {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .testimonial {
+      min-width: 0;
+      margin: 0;
+      padding: 34px;
+      border: 1px solid rgba(255, 255, 255, 0.82);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.82);
+      box-shadow: 0 20px 58px rgba(25, 53, 66, 0.08);
+    }
+
+    .quote-mark {
+      color: var(--blue);
+      font-size: 44px;
+      font-weight: 800;
+      line-height: 0.8;
+    }
+
+    .testimonial blockquote {
+      margin: 20px 0 24px;
+      color: var(--navy);
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    .testimonial figcaption {
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      color: var(--ink-soft);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .contact-panel {
+      overflow: hidden;
+      margin-top: 108px;
+      position: relative;
+      border-radius: 42px;
+      background:
+        radial-gradient(circle at 85% 25%, rgba(79, 159, 189, 0.34), transparent 25rem),
+        linear-gradient(135deg, #122d39, #234b5b 60%, #2f6f67);
+      color: #fff;
+      box-shadow: 0 34px 90px rgba(20, 54, 66, 0.28);
+    }
+
+    .contact-panel::after {
+      content: "";
+      position: absolute;
+      width: 360px;
+      aspect-ratio: 1;
+      right: -180px;
+      bottom: -210px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 50%;
+      box-shadow: 0 0 0 58px rgba(255, 255, 255, 0.03), 0 0 0 116px rgba(255, 255, 255, 0.02);
+      pointer-events: none;
+    }
+
+    .contact-top {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 38px;
+      align-items: end;
+      padding: clamp(38px, 6vw, 72px);
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-top h2 {
+      max-width: 720px;
+      margin: 0;
+      font-size: clamp(36px, 4.6vw, 58px);
+      line-height: 1.08;
+      letter-spacing: -0.05em;
+      text-wrap: balance;
+    }
+
+    .contact-top p {
+      max-width: 720px;
+      margin: 22px 0 0;
+      color: rgba(255, 255, 255, 0.76);
+      font-size: 15px;
+      line-height: 1.75;
+    }
+
+    .contact-top p + p {
+      margin-top: 8px;
+    }
+
+    .contact-details {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .contact-detail {
+      padding: 30px clamp(32px, 6vw, 72px);
+    }
+
+    .contact-detail + .contact-detail {
+      border-left: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .contact-detail span {
+      display: block;
+      margin-bottom: 8px;
+      color: rgba(255, 255, 255, 0.58);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .contact-detail a,
+    .contact-detail p {
+      margin: 0;
+      color: #fff;
+      font-size: clamp(16px, 2vw, 20px);
+      font-weight: 700;
+      line-height: 1.45;
+      text-decoration: none;
+      overflow-wrap: anywhere;
+    }
+
+    .contact-detail a:hover {
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    .site-footer {
+      padding: 44px 24px 52px;
+      color: #6a7b83;
+      text-align: center;
+      font-size: 13px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(44px) scale(0.985);
+      transition: opacity 800ms ease, transform 900ms cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .hero-copy > * {
+      opacity: 0;
+      transform: translateY(28px);
+      animation: heroFade 850ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .hero-copy > :nth-child(2) {
+      animation-delay: 100ms;
+    }
+
+    .hero-copy > :nth-child(3) {
+      animation-delay: 210ms;
+    }
+
+    .hero-copy > :nth-child(4) {
+      animation-delay: 320ms;
+    }
+
+    @keyframes heroFade {
+      to {
+        opacity: 1;
+        transform: translateY(0);
       }
     }
 
-    @keyframes floatImage{
-      0%{transform:translateY(0px);}
-      50%{transform:translateY(-10px);}
-      100%{transform:translateY(0px);}
+    @keyframes floatImage {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
     }
 
-    /* ===== MOBILE (ОБЪЕДИНЁННЫЙ) ===== */
-    @media (max-width: 900px){
-      .container{
-        padding:0 16px;
+    @media (max-width: 1050px) {
+      .nav-links > a:not(.button) {
+        padding-inline: 8px;
       }
 
-      /* HEADER */
-      .nav{
-        flex-direction:column;
-        align-items:flex-start;
-        gap:10px;
+      .hero {
+        grid-template-columns: minmax(0, 0.95fr) minmax(360px, 1.05fr);
+        gap: 42px;
       }
 
-      .nav > div:last-child{
-        display:flex;
-        flex-wrap:wrap;
-        gap:10px;
+      .hero-note {
+        left: -22px;
       }
 
-      .nav a{
-        margin:0;
-        font-size:13px;
+      .specialist-shell {
+        grid-template-columns: 300px minmax(0, 1fr);
       }
 
-      .nav .btn{
-        padding:10px 16px;
-        border-radius:20px;
-        font-size:13px;
+      .conditions-list {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 860px) {
+      :root {
+        --header-height: 72px;
       }
 
-      /* HERO */
-      .hero{
-        flex-direction:column;
-        height:auto;
-        gap:20px;
-        text-align:center;
-        padding-top:110px;
+      .container {
+        width: min(100% - 32px, var(--container));
       }
 
-      .hero h1{
-        font-size:28px;
-        line-height:1.2;
+      .menu-toggle {
+        display: block;
       }
 
-      .hero p{
-        font-size:15px;
-        margin:0 auto 20px;
+      .nav-links {
+        position: absolute;
+        inset: calc(var(--header-height) + 10px) 16px auto;
+        display: grid;
+        gap: 4px;
+        padding: 12px;
+        visibility: hidden;
+        opacity: 0;
+        transform: translateY(-12px);
+        border: 1px solid rgba(16, 33, 42, 0.1);
+        border-radius: 22px;
+        background: rgba(255, 255, 255, 0.97);
+        box-shadow: 0 24px 60px rgba(16, 33, 42, 0.16);
+        transition: opacity 180ms ease, transform 180ms ease, visibility 180ms;
       }
 
-      .hero img{
-        width:100%;
-        border-radius:20px;
-        margin-top:10px;
+      .nav-links.is-open {
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(0);
       }
 
-      .hero .btn{
-        width:100%;
-        text-align:center;
+      .nav-links > a:not(.button) {
+        min-height: 46px;
+        display: flex;
+        align-items: center;
+        padding: 10px 14px;
+        font-size: 14px;
       }
 
-      /* SECTIONS */
-      .section{
-        margin:70px 0;
+      .nav-links .button {
+        width: 100%;
+        margin-top: 4px;
       }
 
-      h2{
-        font-size:24px;
-        margin-bottom:20px;
+      .hero {
+        min-height: auto;
+        grid-template-columns: 1fr;
+        gap: 38px;
+        padding-top: calc(var(--header-height) + 44px);
+        padding-bottom: 72px;
+        text-align: center;
       }
 
-      .section-subtitle{
-        font-size:14px;
-        margin-bottom:24px;
+      .hero-copy > p:not(.eyebrow) {
+        margin-inline: auto;
       }
 
-      .grid{
-        grid-template-columns:1fr;
-        gap:18px;
+      .hero-image-frame {
+        width: min(100%, 680px);
+        margin-inline: auto;
+        border-width: 6px;
+        border-radius: 30px;
       }
 
-      .card{
-        padding:20px;
-        border-radius:18px;
+      .hero-image-frame img {
+        height: auto;
+        min-height: 0;
+        aspect-ratio: 16 / 11;
       }
 
-      /* DOCTOR */
-      .doctor{
-        flex-direction:column;
-        gap:20px;
-        text-align:left;
+      .hero-note {
+        left: 20px;
+        bottom: 20px;
+        text-align: left;
       }
 
-      .doctor img{
-        width:100%;
-        max-width:260px;
-        margin:0 auto;
+      .content-section,
+      .outcomes-section {
+        padding-block: 84px;
       }
 
-      .doctor h3{
-        font-size:22px;
-        text-align:left;
+      .specialist-wrap {
+        margin-top: 90px;
       }
 
-      /* TESTIMONIAL */
-      .testimonial{
-        font-size:13px;
-        padding:18px 18px;
+      .specialist-shell {
+        grid-template-columns: 1fr;
       }
 
-      /* CTA */
-      .cta{
-        padding:50px 20px;
-        border-radius:24px;
+      .specialist-media {
+        position: static;
+        display: grid;
+        grid-template-columns: minmax(220px, 0.76fr) minmax(0, 1fr);
+        gap: 22px;
+        align-items: end;
       }
 
-      .cta .btn{
-        width:100%;
+      .specialist-media img {
+        aspect-ratio: 4 / 5;
       }
 
-      /* BUTTON TAP AREA */
-      .btn{
-        display:block;
-        width:100%;
-        border-radius:18px;
+      .specialist-summary {
+        margin-top: 0;
       }
 
-      /* PARALLAX OFF НА МОБИЛЕ */
-      .parallax{
-        transform:none !important;
+      .contact-top {
+        grid-template-columns: 1fr;
+        align-items: start;
       }
 
-      .glow{
-        display:none;
+      .contact-top .button {
+        width: fit-content;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .brand {
+        font-size: 16px;
+      }
+
+      .brand-mark {
+        width: 36px;
+        height: 36px;
+      }
+
+      .hero {
+        gap: 30px;
+        padding-top: calc(var(--header-height) + 34px);
+        padding-bottom: 54px;
+      }
+
+      .hero h1 {
+        font-size: clamp(35px, 10.8vw, 48px);
+        letter-spacing: -0.05em;
+      }
+
+      .hero-copy > p:not(.eyebrow) {
+        margin-top: 20px;
+        margin-bottom: 26px;
+        font-size: 15px;
+        line-height: 1.7;
+      }
+
+      .hero-copy .button {
+        width: 100%;
+        min-width: 0;
+      }
+
+      .hero-image-frame {
+        border-width: 4px;
+        border-radius: 24px;
+      }
+
+      .hero-image-frame img {
+        aspect-ratio: 4 / 3;
+      }
+
+      .hero-note {
+        max-width: calc(100% - 28px);
+        left: 14px;
+        right: 14px;
+        bottom: 14px;
+        padding: 14px 15px;
+        border-radius: 16px;
+        font-size: 11px;
+      }
+
+      .content-section,
+      .outcomes-section {
+        padding-block: 68px;
+      }
+
+      .section-heading {
+        margin-bottom: 34px;
+      }
+
+      .section-heading h2,
+      .specialist-content h2 {
+        font-size: 33px;
+      }
+
+      .section-heading p {
+        margin-top: 15px;
+        font-size: 14px;
+        line-height: 1.7;
+      }
+
+      .methods-grid,
+      .testimonials {
+        grid-template-columns: 1fr;
+      }
+
+      .method-card,
+      .testimonial {
+        padding: 25px 22px;
+        border-radius: 23px;
+      }
+
+      .method-card h3 {
+        font-size: 18px;
+      }
+
+      .specialist-wrap {
+        margin-top: 76px;
+      }
+
+      .specialist-shell {
+        width: calc(100% + 8px);
+        margin-left: -4px;
+        padding: 20px;
+        gap: 30px;
+        border-radius: 28px;
+      }
+
+      .specialist-media {
+        grid-template-columns: 1fr;
+      }
+
+      .specialist-media img {
+        width: 100%;
+        max-height: 460px;
+        object-position: center 25%;
+      }
+
+      .specialist-summary {
+        padding: 18px;
+      }
+
+      .doctor-role {
+        margin-bottom: 24px;
+        font-size: 14px;
+      }
+
+      .info-block {
+        padding-block: 24px;
+      }
+
+      .info-list li {
+        padding: 15px 15px 15px 48px;
+        font-size: 13px;
+      }
+
+      .conditions-list {
+        grid-template-columns: 1fr;
+      }
+
+      .specialist-content > .button {
+        width: 100%;
+      }
+
+      .testimonial blockquote {
+        font-size: 14px;
+      }
+
+      .contact-panel {
+        margin-top: 76px;
+        border-radius: 28px;
+      }
+
+      .contact-top {
+        gap: 28px;
+        padding: 34px 24px;
+      }
+
+      .contact-top h2 {
+        font-size: 35px;
+      }
+
+      .contact-top p {
+        font-size: 13px;
+      }
+
+      .contact-top .button {
+        width: 100%;
+      }
+
+      .contact-details {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-detail {
+        padding: 24px;
+      }
+
+      .contact-detail + .contact-detail {
+        border-top: 1px solid rgba(255, 255, 255, 0.14);
+        border-left: 0;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .container {
+        width: calc(100% - 24px);
+      }
+
+      .brand-mark {
+        display: none;
+      }
+
+      .hero h1 {
+        font-size: 33px;
+      }
+
+      .method-card,
+      .testimonial,
+      .specialist-shell {
+        padding-inline: 18px;
+      }
+
+      .info-list li {
+        padding-left: 44px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 1ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 1ms !important;
+      }
+
+      .reveal,
+      .hero-copy > * {
+        opacity: 1;
+        transform: none;
       }
     }
   </style>
 </head>
 <body>
-
-  <div class="glow" style="top:-120px;left:-120px;"></div>
-  <div class="glow" style="bottom:-160px;right:-80px;"></div>
-
-  <header>
+  <header class="site-header">
     <div class="container nav">
-      <div class="logo">ЛФК Саратов</div>
-      <div>
+      <a class="brand" href="#top" aria-label="ЛФК Саратов — на главную">
+        <span class="brand-mark" aria-hidden="true">ЛФК</span>
+        <span>ЛФК Саратов</span>
+      </a>
+
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Открыть меню">
+        <span></span>
+      </button>
+
+      <nav class="nav-links" id="site-menu" aria-label="Основная навигация">
         <a href="#services">Услуги</a>
         <a href="#doctor">Специалист</a>
         <a href="#reviews">Результаты</a>
         <a href="#contacts">Контакты</a>
-        <a href="#contacts" class="btn">Записаться</a>
-      </div>
+        <a href="#contacts" class="button">Записаться</a>
+      </nav>
     </div>
   </header>
 
-  <section class="hero container parallax">
-    <div>
-      <h1>Лечебная физкультура и реабилитация в Саратове</h1>
-      <p>Индивидуальные программы ЛФК и физической реабилитации для восстановления функций опорно-двигательного аппарата после травм, операций и хронических заболеваний.</p>
-      <a href="#contacts" class="btn">Получить консультацию</a>
-    </div>
-    <img src="assets/images/3.jpg"
-         alt="Специалист по ЛФК проводит реабилитационное занятие в зале с тренажёрами"
-         loading="eager">
-  </section>
-
-  <section id="services" class="section container">
-    <h2>Методы восстановления</h2>
-    <p class="section-subtitle">Подбираем безопасные и эффективные методики с учётом диагноза, возраста и уровня подготовки, чтобы снизить боль, улучшить подвижность и вернуть вас к привычной активности.</p>
-
-    <div class="grid">
-      <div class="card reveal">
-        <div class="card-title">Кинезитерапия на декомпрессионных тренажёрах</div>
-        <ul class="card-list">
-          <li>Восстановление функций опорно-двигательного аппарата.</li>
-          <li>Снижение болевого синдрома и воспаления за счёт дозированной нагрузки.</li>
-          <li>Улучшение подвижности позвоночника и суставов, укрепление мышц.</li>
-        </ul>
+  <main>
+    <section class="hero container" id="top">
+      <div class="hero-copy">
+        <p class="eyebrow">Персональный путь к движению</p>
+        <h1>Лечебная физкультура и реабилитация в Саратове</h1>
+        <p>Индивидуальные программы ЛФК и физической реабилитации для восстановления функций опорно-двигательного аппарата после травм, операций и хронических заболеваний.</p>
+        <a href="#contacts" class="button">Получить консультацию</a>
       </div>
 
-      <div class="card reveal">
-        <div class="card-title">Точечная пальпаторная проработка</div>
-        <ul class="card-list">
-          <li>Мягкое устранение мышечных спазмов и триггерных точек.</li>
-          <li>Снижение чувства усталости, напряжения и скованности позвоночника и суставов.</li>
-          <li>Поддержка осанки и общего тонуса нервной системы.</li>
-        </ul>
+      <div class="hero-visual" data-parallax>
+        <div class="hero-image-frame">
+          <img src="assets/images/rehabilitation.jpg" alt="Специалист по ЛФК проводит реабилитационное занятие в зале с тренажёрами" width="3360" height="2240" fetchpriority="high">
+        </div>
+        <div class="hero-note">Безопасная нагрузка с учётом диагноза, возраста и уровня подготовки</div>
+      </div>
+    </section>
+
+    <section class="content-section container" id="services">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Методы восстановления</p>
+        <h2>Движение, выстроенное под вашу задачу</h2>
+        <p>Подбираем безопасные и эффективные методики с учётом диагноза, возраста и уровня подготовки, чтобы снизить боль, улучшить подвижность и вернуть вас к привычной активности.</p>
       </div>
 
-      <div class="card reveal">
-        <div class="card-title">Постизометрическая релаксация (ПИР)</div>
-        <ul class="card-list">
-          <li>Снятие мышечного гипертонуса и уменьшение болевого синдрома.</li>
-          <li>Мягкая мануальная мобилизация без резких рывков.</li>
-          <li>Восстановление физиологической длины мышц и объёма движений.</li>
-        </ul>
+      <div class="methods-grid">
+        <article class="method-card reveal">
+          <div class="method-number" aria-hidden="true">01</div>
+          <h3>Кинезитерапия на декомпрессионных тренажёрах</h3>
+          <ul class="clean-list">
+            <li>Восстановление функций опорно-двигательного аппарата.</li>
+            <li>Снижение болевого синдрома и воспаления за счёт дозированной нагрузки.</li>
+            <li>Улучшение подвижности позвоночника и суставов, укрепление мышц.</li>
+          </ul>
+        </article>
+
+        <article class="method-card reveal">
+          <div class="method-number" aria-hidden="true">02</div>
+          <h3>Точечная пальпаторная проработка</h3>
+          <ul class="clean-list">
+            <li>Мягкое устранение мышечных спазмов и триггерных точек.</li>
+            <li>Снижение чувства усталости, напряжения и скованности позвоночника и суставов.</li>
+            <li>Поддержка осанки и общего тонуса нервной системы.</li>
+          </ul>
+        </article>
+
+        <article class="method-card reveal">
+          <div class="method-number" aria-hidden="true">03</div>
+          <h3>Постизометрическая релаксация (ПИР)</h3>
+          <ul class="clean-list">
+            <li>Снятие мышечного гипертонуса и уменьшение болевого синдрома.</li>
+            <li>Мягкая мануальная мобилизация без резких рывков.</li>
+            <li>Восстановление физиологической длины мышц и объёма движений.</li>
+          </ul>
+        </article>
+
+        <article class="method-card reveal">
+          <div class="method-number" aria-hidden="true">04</div>
+          <h3>Суставная и партерная гимнастика</h3>
+          <ul class="clean-list">
+            <li>Улучшение подвижности суставов и гибкости позвоночника.</li>
+            <li>Повышение выносливости и силы без ударных нагрузок.</li>
+            <li>Активизация периферического кровообращения и нормализация самочувствия.</li>
+          </ul>
+        </article>
       </div>
 
-      <div class="card reveal">
-        <div class="card-title">Суставная и партерная гимнастика</div>
-        <ul class="card-list">
-          <li>Улучшение подвижности суставов и гибкости позвоночника.</li>
-          <li>Повышение выносливости и силы без ударных нагрузок.</li>
-          <li>Активизация периферического кровообращения и нормализация самочувствия.</li>
-        </ul>
+      <div class="specialist-wrap" id="doctor">
+        <div class="specialist-shell reveal">
+          <div class="specialist-media">
+            <img src="assets/images/specialist.png" alt="Мишагин Данила Викторович — специалист по лечебной физкультуре" width="1536" height="1024" loading="lazy">
+            <div class="specialist-summary">
+              <strong>Главный специалист</strong>
+              <p>Дипломированный специалист по ЛФК, физической реабилитации и кинезиотейпированию. Практический стаж с 2015 года.</p>
+            </div>
+          </div>
+
+          <div class="specialist-content">
+            <p class="eyebrow">Главный специалист</p>
+            <h2>Мишагин Данила Викторович</h2>
+            <p class="doctor-role">Дипломированный специалист по ЛФК, физической реабилитации и кинезиотейпированию. Практический стаж с 2015 года.</p>
+
+            <div class="info-block">
+              <h3>Образование и подготовка</h3>
+              <ol class="info-list">
+                <li>Высшее педагогическое образование (специалитет). Институт физической культуры и спорта, г. Саратов, 2009–2014 гг.</li>
+                <li>Институт современной кинезитерапии и физической реабилитации (НОЧУ ДПО). Профилактика и лечение деформирующих заболеваний костно-мышечной системы с применением декомпрессионных тренажёров (метод Бубновского С.М.), г. Москва: «Инструктор-методист» (2016 г.), «Инструктор-реабилитолог» (2018 г.).</li>
+                <li>Степень магистра по направлению «Адаптивная физическая культура», г. Саратов, 2017–2019 гг.</li>
+                <li>Профессиональная переподготовка: лечебная физкультура и спортивная медицина, Государственный медицинский университет, г. Саратов, 2022 г.</li>
+                <li>Стажировка в РЦ «Преодоление» по физической терапии, г. Москва, 2026 г.</li>
+              </ol>
+            </div>
+
+            <div class="info-block">
+              <h3>С чем работаю</h3>
+              <ul class="conditions-list">
+                <li>Грыжи и протрузии межпозвонковых дисков, остеохондроз, дорсалгии.</li>
+                <li>Артрозы, артриты, коксартроз, гонартроз, бурсит, тендинит, синовит.</li>
+                <li>Сколиоз, кифоз и другие нарушения осанки.</li>
+                <li>Последствия травм мениска, конечностей, компрессионных переломов.</li>
+                <li>Состояния после оперативных вмешательств на позвоночнике и суставах.</li>
+                <li>Синдром грушевидной мышцы, спондилолистез, остеопороз.</li>
+                <li>Головные боли мышечного происхождения, дыхательная гимнастика и разработка лёгких.</li>
+              </ul>
+            </div>
+
+            <p class="specialist-note">Индивидуальный подход и грамотно выстроенная программа позволяют большинству пациентов отмечать улучшение самочувствия уже в первые недели занятий. Дальнейшая работа направлена на укрепление результата и формирование привычки к безопасной двигательной активности.</p>
+            <p class="tagline">О себе: честность, пунктуальность, профессиональная гибкость и умение находить подход к людям разной комплекции и уровня спастичности.</p>
+            <a href="#contacts" class="button">Записаться на приём</a>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="doctor" class="section container">
-    <h2>Главный специалист</h2>
-
-    <div class="doctor reveal">
-      <img src="https://raw.githubusercontent.com/Alexeyfra/lfk-saratov/b5961e823cafb2bc83e2c6cfff17985e86a27faa/assets/images/50eefa59-c0e6-4891-b317-66e4654df648.png"
-           alt="Мишагин Данила Викторович — специалист по лечебной физкультуре"
-           loading="lazy">
-
-      <div>
-        <h3>Мишагин Данила Викторович</h3>
-        <p class="doctor-role">Дипломированный специалист по ЛФК, физической реабилитации и кинезиотейпированию. Практический стаж с 2015 года.</p>
-
-        <div class="doctor-block-title">Образование и подготовка</div>
-        <ul>
-          <li>Высшее педагогическое образование (специалитет). Институт физической культуры и спорта, г. Саратов, 2009–2014 гг.</li>
-          <li>Институт современной кинезитерапии и физической реабилитации (НОЧУ ДПО). Профилактика и лечение деформирующих заболеваний костно-мышечной системы с применением декомпрессионных тренажёров (метод Бубновского С.М.), г. Москва:
-            «Инструктор-методист» (2016 г.), «Инструктор-реабилитолог» (2018 г.).</li>
-          <li>Степень магистра по направлению «Адаптивная физическая культура», г. Саратов, 2017–2019 гг.</li>
-          <li>Профессиональная переподготовка: лечебная физкультура и спортивная медицина, Государственный медицинский университет, г. Саратов, 2022 г.</li>
-          <li>Стажировка в РЦ «Преодоление» по физической терапии, г. Москва, 2026 г.</li>
-        </ul>
-
-        <div class="doctor-block-title">С чем работаю</div>
-        <ul>
-          <li>Грыжи и протрузии межпозвонковых дисков, остеохондроз, дорсалгии.</li>
-          <li>Артрозы, артриты, коксартроз, гонартроз, бурсит, тендинит, синовит.</li>
-          <li>Сколиоз, кифоз и другие нарушения осанки.</li>
-          <li>Последствия травм мениска, конечностей, компрессионных переломов.</li>
-          <li>Состояния после оперативных вмешательств на позвоночнике и суставах.</li>
-          <li>Синдром грушевидной мышцы, спондилолистез, остеопороз.</li>
-          <li>Головные боли мышечного происхождения, дыхательная гимнастика и разработка лёгких.</li>
-        </ul>
-
-        <p>Индивидуальный подход и грамотно выстроенная программа позволяют большинству пациентов отмечать улучшение самочувствия уже в первые недели занятий. Дальнейшая работа направлена на укрепление результата и формирование привычки к безопасной двигательной активности.</p>
-
-        <p class="tagline">О себе: честность, пунктуальность, профессиональная гибкость и умение находить подход к людям разной комплекции и уровня спастичности.</p>
-
-        <br>
-        <a href="#contacts" class="btn">Записаться на приём</a>
+    <section class="outcomes-section container" id="reviews">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Результаты пациентов</p>
+        <h2>Возвращение к привычной жизни</h2>
+        <p>Каждый случай индивидуален, но цель всегда одна — уменьшить боль, повысить качество жизни и помочь вернуться к привычным делам.</p>
       </div>
-    </div>
-  </section>
 
-  <section id="reviews" class="section container">
-    <h2>Результаты пациентов</h2>
-    <p class="section-subtitle">Каждый случай индивидуален, но цель всегда одна — уменьшить боль, повысить качество жизни и помочь вернуться к привычным делам.</p>
+      <div class="testimonials">
+        <figure class="testimonial reveal">
+          <div class="quote-mark" aria-hidden="true">“</div>
+          <blockquote>«Через несколько недель занятий смог вернуться к работе без постоянной боли в спине. Постепенно увеличиваем нагрузку, учусь правильно двигаться и укреплять мышцы.»</blockquote>
+          <figcaption>Пациент, восстановление после обострения остеохондроза</figcaption>
+        </figure>
 
-    <div class="testimonial reveal">
-      «Через несколько недель занятий смог вернуться к работе без постоянной боли в спине. Постепенно увеличиваем нагрузку, учусь правильно двигаться и укреплять мышцы.»
-      <div class="testimonial-author">Пациент, восстановление после обострения остеохондроза</div>
-    </div>
+        <figure class="testimonial reveal">
+          <div class="quote-mark" aria-hidden="true">“</div>
+          <blockquote>«После операции на коленном суставе боялась нагружать ногу. Постепенно, под контролем специалиста, вернулась к ходьбе без трости, стала увереннее чувствовать себя в движении.»</blockquote>
+          <figcaption>Пациентка, реабилитация после операции на колене</figcaption>
+        </figure>
+      </div>
 
-    <div class="testimonial reveal">
-      «После операции на коленном суставе боялась нагружать ногу. Постепенно, под контролем специалиста, вернулась к ходьбе без трости, стала увереннее чувствовать себя в движении.»
-      <div class="testimonial-author">Пациентка, реабилитация после операции на колене</div>
-    </div>
-  </section>
+      <div class="contact-panel reveal" id="contacts">
+        <div class="contact-top">
+          <div>
+            <h2>Начните восстановление уже сегодня</h2>
+            <p>На первой консультации разбираем ваш случай, оцениваем состояние, объясняем план занятий и прогноз по этапам реабилитации.</p>
+            <p>Можно записаться по телефону или через мессенджер — выберите удобный способ связи.</p>
+          </div>
+          <a href="tel:+79776101064" class="button button--light">Записаться на консультацию</a>
+        </div>
 
-  <section class="section container">
-    <div class="cta reveal">
-      <h2>Начните восстановление уже сегодня</h2>
-      <p>На первой консультации разбираем ваш случай, оцениваем состояние, объясняем план занятий и прогноз по этапам реабилитации.</p>
-      <p class="cta-contacts">Можно записаться по телефону или через мессенджер — выберите удобный способ связи.</p>
-      <a href="#contacts" class="btn">Записаться на консультацию</a>
-    </div>
-  </section>
+        <div class="contact-details" aria-label="Контакты">
+          <div class="contact-detail">
+            <span>Телефон</span>
+            <a href="tel:+79776101064">+7&nbsp;977&nbsp;610‑10‑64</a>
+          </div>
+          <div class="contact-detail">
+            <span>Адрес</span>
+            <p>г. Саратов, ул. Большая Казачья, 18В</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
-  <section id="contacts" class="section container contacts">
-    <h2>Контакты</h2>
-    <p>Телефон: <a href="tel:+79776101064">+7&nbsp;977&nbsp;610‑10‑64</a></p>
-    <p>Адрес: г. Саратов, ул. Большая Казачья, 18В</p>
-  </section>
-
-  <footer>
-    © 2026 LFK Clinic. Все права защищены
-  </footer>
+  <footer class="site-footer">© 2026 LFK Clinic. Все права защищены</footer>
 
   <script>
-    // Reveal-анимация при прокрутке
-    const revealElements = document.querySelectorAll('.card, .testimonial, .doctor, .cta');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const siteMenu = document.querySelector('#site-menu');
+    const menuLinks = siteMenu.querySelectorAll('a');
+
+    function setMenu(open) {
+      menuToggle.setAttribute('aria-expanded', String(open));
+      menuToggle.setAttribute('aria-label', open ? 'Закрыть меню' : 'Открыть меню');
+      siteMenu.classList.toggle('is-open', open);
+      document.body.classList.toggle('menu-open', open);
+    }
+
+    menuToggle.addEventListener('click', () => {
+      setMenu(menuToggle.getAttribute('aria-expanded') !== 'true');
+    });
+
+    menuLinks.forEach((link) => link.addEventListener('click', () => setMenu(false)));
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') setMenu(false);
+    });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 860) setMenu(false);
+    });
+
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('active');
+          entry.target.classList.add('is-visible');
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.15 });
+    }, { threshold: 0.12, rootMargin: '0px 0px -32px' });
 
-    revealElements.forEach(el => {
-      el.classList.add('reveal');
-      observer.observe(el);
-    });
+    revealElements.forEach((element) => revealObserver.observe(element));
 
-    // Параллакс-эффект для hero на десктопе
-    const parallaxSection = document.querySelector('.parallax');
+    const parallaxElement = document.querySelector('[data-parallax]');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     let ticking = false;
 
     function updateParallax() {
-      const scrolled = window.pageYOffset || document.documentElement.scrollTop;
-      if (parallaxSection && window.innerWidth > 900) {
-        parallaxSection.style.transform = `translateY(${scrolled * 0.08}px)`;
+      if (parallaxElement && window.innerWidth > 860 && !reduceMotion.matches) {
+        const offset = Math.min(window.scrollY * 0.045, 36);
+        parallaxElement.style.transform = `translate3d(0, ${offset}px, 0)`;
+      } else if (parallaxElement) {
+        parallaxElement.style.transform = '';
       }
       ticking = false;
     }
@@ -671,7 +1389,9 @@
         window.requestAnimationFrame(updateParallax);
         ticking = true;
       }
-    });
+    }, { passive: true });
+
+    window.addEventListener('resize', updateParallax);
   </script>
 </body>
 </html>
